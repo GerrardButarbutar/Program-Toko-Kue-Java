@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="939044f6-234d-4957-a476-b89fddb4f56b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="mIdtransaksi" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nIdtransaksi" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT *, nama_kue, harga, jumlah_beli * harga AS total FROM tbltransaksi
+LEFT JOIN tblkue USING(id_kue) WHERE id_transaksi BETWEEN $P{mIdtransaksi} AND $P{nIdtransaksi}]]>
+	</queryString>
+	<field name="id_kue" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_transaksi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_transaksi" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pembeli" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jumlah_beli" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_kue" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<frame>
+				<reportElement uuid="af696da7-f7e8-43f7-a2e5-d5620b5fc6de" mode="Opaque" x="0" y="0" width="802" height="66" backcolor="#000000"/>
+				<staticText>
+					<reportElement uuid="27564e9d-056a-4e9e-8e50-65369673cc14" style="Title" x="8" y="0" width="370" height="66" forecolor="#CCCCCC"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Segoe Print" size="32" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Toko Kue]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="0e7fe094-a797-4601-985c-f6561541dfc0" style="SubTitle" x="380" y="37" width="316" height="29"/>
+					<textElement textAlignment="Right">
+						<font fontName="Consolas" size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[File Report Transaksi]]></text>
+				</staticText>
+				<image>
+					<reportElement uuid="16b84f18-e45b-48c9-9d63-4f982f333478" x="730" y="6" width="72" height="55"/>
+					<imageExpression><![CDATA["D:\\Kuliah\\Gerrard Nicodemus Butar Butar - 31 20 0008 - Program Studi Sistem Informasi - UBM\\_Kuliah\\Semester 3\\Pemrograman Berorientasi Objek (4 SKS)\\UAS\\TokoKue\\src\\kue.png"]]></imageExpression>
+				</image>
+			</frame>
+			<frame>
+				<reportElement uuid="48ebb0d4-d6ad-48b3-958e-24e9d0532fac" mode="Opaque" x="0" y="70" width="802" height="32" forecolor="#000000" backcolor="#CC0000"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="3e5e96df-ffcf-453b-986a-236c0b3a97d9" x="495" y="12" width="202" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font fontName="Consolas" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8040f6af-60f1-4764-9df0-6a6f71dcdef4" style="Column header" x="0" y="0" width="99" height="18" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Consolas" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID Transaksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="304cf1b1-7a9b-40e5-8082-ff890051d7ed" style="Column header" x="99" y="0" width="99" height="18" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Consolas" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9c197151-9f66-46fa-9702-c70f4590fa7d" style="Column header" x="198" y="0" width="145" height="18" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Consolas" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pembeli]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2cfdede8-2a1c-40cb-b0d2-2a671c280196" style="Column header" x="343" y="0" width="62" height="18" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Consolas" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID Kue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7ea9916d-d039-4fdc-92de-67cc61035c05" style="Column header" x="405" y="0" width="142" height="18" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Consolas" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Kue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="810b166e-0b52-42af-b2ac-4072472ea6ef" style="Column header" x="552" y="0" width="70" height="18" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Consolas" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5990ac2f-8974-4c83-a22a-1be196cbd10b" style="Column header" x="622" y="0" width="58" height="18" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Consolas" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9de2266b-0800-4cab-87d7-c60d451c3cf4" style="Column header" x="693" y="0" width="99" height="18" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Consolas" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Harga Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement uuid="cf4bf48b-1199-4055-a2db-99d57b4f9bba" style="Row" mode="Opaque" x="0" y="0" width="797" height="18"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="cd7a8984-6e30-4142-ba2f-55ff87440a32" style="Detail" positionType="Float" x="0" y="0" width="99" height="18"/>
+					<textElement>
+						<font fontName="Consolas" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id_transaksi}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd-MMM-yyyy">
+					<reportElement uuid="b0b8411a-a1cc-445d-a99a-228bf27bf7af" style="Detail" positionType="Float" x="99" y="0" width="99" height="18"/>
+					<textElement>
+						<font fontName="Consolas" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tgl_transaksi}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="773fca75-de8b-419e-884a-a93ebdb207a5" style="Detail" positionType="Float" x="198" y="0" width="145" height="18"/>
+					<textElement>
+						<font fontName="Consolas" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pembeli}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="30338383-a0b2-4801-968d-50b6dc57ba58" style="Detail" positionType="Float" x="343" y="0" width="62" height="18"/>
+					<textElement>
+						<font fontName="Consolas" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id_kue}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="040b5eb0-950b-4152-ad00-c188376c1ace" style="Detail" positionType="Float" x="405" y="0" width="142" height="18"/>
+					<textElement>
+						<font fontName="Consolas" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nama_kue}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0">
+					<reportElement uuid="5caf7ee5-83f9-4915-a01a-e995a2b52e63" style="Detail" positionType="Float" x="552" y="0" width="70" height="18"/>
+					<textElement>
+						<font fontName="Consolas" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="129eb248-908b-497e-a4b1-addfe3f8c4cf" style="Detail" positionType="Float" x="622" y="0" width="58" height="18"/>
+					<textElement>
+						<font fontName="Consolas" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{jumlah_beli}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0">
+					<reportElement uuid="e0fbdb11-06c0-4108-8983-11e99d1cf5ef" style="Detail" positionType="Float" x="693" y="0" width="99" height="18"/>
+					<textElement>
+						<font fontName="Consolas" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement uuid="09b03e6d-2b91-46e1-a649-31c6c90d0314" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="a9ed9ffd-9e45-4897-aecd-098a96db32d7" mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="6e7256d2-8b54-4bfa-8e86-0c561cb3b134" style="Column header" x="757" y="3" width="40" height="20" forecolor="#CCCCCC"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Consolas" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="966237e7-8933-4e5d-a84f-7e5ced4659f8" style="Column header" x="677" y="3" width="80" height="20" forecolor="#CCCCCC"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Consolas" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="f7bbaa94-e92c-4500-acd9-0e19315c6c6d" x="11" y="5" width="239" height="20" forecolor="#CCCCCC"/>
+					<textElement>
+						<font fontName="Consolas" size="12"/>
+					</textElement>
+					<text><![CDATA[© Gerrard Butarbutar - 2021/2022]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
